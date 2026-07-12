@@ -84,7 +84,7 @@ alfiyansya.github.io/
 
 - **LinkedIn** — [achmad-alfiansyah](https://linkedin.com/in/achmad-alfiansyah)
 - **GitHub** — [alfiyansya](https://github.com/alfiyansya)
-- **Stack Overflow** — [alfiyansyah](https://stackoverflow.com/users/22112837/alfiyansyah)
+- **Instagram** — [alfiansyah.achmad](https://www.instagram.com/alfiansyah.achmad/)
 
 ## 📄 License
 

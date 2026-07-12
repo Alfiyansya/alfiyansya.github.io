@@ -10,7 +10,7 @@ const BUILD_LOGS = [
 
 const LINKEDIN_URL = 'https://linkedin.com/in/achmad-alfiansyah'
 const GITHUB_URL = 'https://github.com/alfiyansya'
-const STACKOVERFLOW_URL = 'https://stackoverflow.com/users/22112837/alfiyansyah'
+const INSTAGRAM_URL = 'https://www.instagram.com/alfiansyah.achmad/'
 
 /* ─── SVG Icons ─── */
 function LinkedInIcon({ className = 'w-5 h-5' }) {
@@ -29,10 +29,10 @@ function GitHubIcon({ className = 'w-5 h-5' }) {
   )
 }
 
-function StackOverflowIcon({ className = 'w-5 h-5' }) {
+function InstagramIcon({ className = 'w-5 h-5' }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15.725 0l-1.72 1.277 6.39 8.588 1.716-1.277L15.725 0zm-3.94 3.418l-1.369 1.644 8.225 6.85 1.369-1.644-8.225-6.85zm-3.15 4.465l-.905 1.94 9.702 4.517.904-1.94-9.701-4.517zm-1.85 4.86l-.44 2.093 10.473 2.201.44-2.092-10.473-2.203zM1.89 15.47V24h19.19v-8.53h-2.133v6.397H4.021v-6.396H1.89zm4.265 2.133v2.13h10.66v-2.13H6.154z" />
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
     </svg>
   )
 }
@@ -50,11 +50,11 @@ function TerminalIcon({ className = 'w-5 h-5' }) {
 function Header() {
   return (
     <header className="flex items-center justify-between px-6 py-4 md:px-10 md:py-6">
-      <div className="flex items-center gap-2 font-mono text-sm md:text-base text-[var(--color-text-secondary)]">
-        <TerminalIcon className="w-4 h-4 text-[var(--color-kotlin-purple)]" />
+      <div className="flex items-center gap-2 font-mono text-sm md:text-base" style={{ color: 'var(--text-secondary)' }}>
+        <TerminalIcon className="w-4 h-4 text-kotlin-purple" />
         <span className="kotlin-gradient-text font-semibold">Achmad Alfiansyah</span>
       </div>
-      <span className="font-sans text-xs md:text-sm tracking-widest uppercase text-[var(--color-text-muted)]">
+      <span className="font-sans text-xs md:text-sm tracking-widest uppercase" style={{ color: 'var(--text-muted)' }}>
         Mobile Engineer
       </span>
     </header>
@@ -66,15 +66,17 @@ function ProgressBar({ progress, hasError }) {
   return (
     <div className="w-full max-w-md mx-auto">
       <div className="flex justify-between items-center mb-2">
-        <span className="font-mono text-xs text-[var(--color-text-muted)]">Build Progress</span>
-        <span className={`font-mono text-xs font-semibold ${hasError ? 'text-[var(--color-error-red)]' : 'text-[var(--color-text-secondary)]'}`}>
+        <span className="font-mono text-xs" style={{ color: 'var(--text-muted)' }}>Build Progress</span>
+        <span
+          className="font-mono text-xs font-semibold"
+          style={{ color: hasError ? '#EF4444' : 'var(--text-secondary)' }}
+        >
           {progress}%
         </span>
       </div>
-      <div className="h-2 rounded-full bg-[var(--color-bg-tertiary)] overflow-hidden">
+      <div className="h-2 rounded-full overflow-hidden" style={{ backgroundColor: 'var(--bg-tertiary)' }}>
         <div
-          className={`h-full rounded-full transition-all duration-700 ease-out ${hasError ? 'progress-bar-error' : 'progress-bar-gradient'
-            }`}
+          className={`h-full rounded-full transition-all duration-700 ease-out ${hasError ? 'progress-bar-error' : 'progress-bar-gradient'}`}
           style={{ width: `${progress}%` }}
         />
       </div>
@@ -85,23 +87,34 @@ function ProgressBar({ progress, hasError }) {
 /* ─── Terminal Window ─── */
 function TerminalWindow({ logs, hasError }) {
   return (
-    <div className={`w-full max-w-lg mx-auto rounded-xl overflow-hidden border ${hasError ? 'border-[var(--color-error-red)]/40 error-flash-bg' : 'border-[var(--color-border-subtle)]'
-      }`}>
+    <div
+      className="w-full max-w-lg mx-auto rounded-xl overflow-hidden"
+      style={{
+        border: hasError ? '1px solid rgba(239, 68, 68, 0.4)' : '1px solid var(--border-subtle)',
+        ...(hasError ? {} : {}),
+      }}
+    >
       {/* Title bar */}
-      <div className="flex items-center gap-2 px-4 py-2.5 bg-[var(--color-bg-tertiary)] border-b border-[var(--color-border-subtle)]">
+      <div
+        className="flex items-center gap-2 px-4 py-2.5"
+        style={{ backgroundColor: 'var(--bg-tertiary)', borderBottom: '1px solid var(--border-subtle)' }}
+      >
         <div className="flex gap-1.5">
-          <div className="w-3 h-3 rounded-full bg-[#FF5F57]" />
-          <div className="w-3 h-3 rounded-full bg-[#FEBC2E]" />
-          <div className="w-3 h-3 rounded-full bg-[#28C840]" />
+          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FF5F57' }} />
+          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#FEBC2E' }} />
+          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#28C840' }} />
         </div>
-        <span className="font-mono text-xs text-[var(--color-text-muted)] ml-2">terminal — build</span>
+        <span className="font-mono text-xs ml-2" style={{ color: 'var(--text-muted)' }}>terminal — build</span>
       </div>
 
       {/* Terminal body */}
-      <div className="bg-[var(--color-bg-terminal)] p-4 min-h-[140px] md:min-h-[180px] font-mono text-xs md:text-sm leading-relaxed">
+      <div
+        className={`p-4 min-h-[140px] md:min-h-[180px] font-mono text-xs md:text-sm leading-relaxed ${hasError ? 'error-flash-bg' : ''}`}
+        style={{ backgroundColor: 'var(--bg-terminal)' }}
+      >
         {logs.length === 0 && (
-          <div className="flex items-center text-[var(--color-text-muted)]">
-            <span className="text-[var(--color-kotlin-purple)] mr-2">$</span>
+          <div className="flex items-center" style={{ color: 'var(--text-muted)' }}>
+            <span className="mr-2 text-kotlin-purple">$</span>
             <span>Awaiting build command...</span>
             <span className="terminal-cursor" />
           </div>
@@ -112,13 +125,14 @@ function TerminalWindow({ logs, hasError }) {
           return (
             <div
               key={i}
-              className={`animate-fade-in-up ${isError
-                ? 'text-[var(--color-error-red)] font-bold'
-                : 'text-[var(--color-text-terminal)]'
-                }`}
-              style={{ animationDelay: `${i * 0.05}s` }}
+              className="animate-fade-in-up"
+              style={{
+                animationDelay: `${i * 0.05}s`,
+                color: isError ? '#EF4444' : 'var(--text-terminal)',
+                fontWeight: isError ? 700 : 400,
+              }}
             >
-              <span className={`mr-2 ${isError ? 'text-[var(--color-error-red)]' : 'text-[var(--color-kotlin-purple)]'}`}>
+              <span className="mr-2" style={{ color: isError ? '#EF4444' : '#7F52FF' }}>
                 {isError ? '✗' : '›'}
               </span>
               {log}
@@ -138,10 +152,16 @@ function BuildButton({ onClick, step }) {
       id="build-button"
       onClick={onClick}
       className="kotlin-gradient-border rounded-xl cursor-pointer active:scale-95 transition-transform duration-100"
+      style={{ border: 'none', background: 'none', padding: 0 }}
     >
-      <div className="px-8 py-3.5 md:px-10 md:py-4 rounded-xl bg-[var(--color-bg-secondary)] hover:bg-[var(--color-bg-tertiary)] transition-colors duration-200">
-        <span className="font-mono text-sm md:text-base font-semibold text-[var(--color-text-primary)] flex items-center gap-3">
-          <span className="text-[var(--color-kotlin-purple)]">▶</span>
+      <div
+        className="px-8 py-3.5 md:px-10 md:py-4 rounded-xl transition-colors duration-200"
+        style={{ backgroundColor: 'var(--bg-secondary)' }}
+        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--bg-tertiary)'}
+        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--bg-secondary)'}
+      >
+        <span className="font-mono text-sm md:text-base font-semibold flex items-center gap-3" style={{ color: 'var(--text-primary)' }}>
+          <span className="text-kotlin-purple">▶</span>
           {step === 0 ? 'Click to build the website' : `Building... (${step}/5)`}
         </span>
       </div>
@@ -153,18 +173,27 @@ function BuildButton({ onClick, step }) {
 function ErrorCard() {
   return (
     <div className="w-full max-w-lg mx-auto animate-fade-in-up">
-      <div className="rounded-2xl border border-[var(--color-error-red)]/30 bg-[var(--color-bg-card)] overflow-hidden shadow-2xl shadow-red-900/10">
+      <div
+        className="rounded-2xl overflow-hidden shadow-2xl"
+        style={{
+          border: '1px solid rgba(239, 68, 68, 0.3)',
+          backgroundColor: 'var(--bg-card)',
+        }}
+      >
         {/* Error header */}
-        <div className="px-6 pt-6 pb-4 border-b border-[var(--color-border-subtle)]">
+        <div className="px-6 pt-6 pb-4" style={{ borderBottom: '1px solid var(--border-subtle)' }}>
           <div className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 rounded-xl bg-[var(--color-error-red)]/10 flex items-center justify-center">
-              <span className="text-[var(--color-error-red)] text-lg">✗</span>
+            <div
+              className="w-10 h-10 rounded-xl flex items-center justify-center"
+              style={{ backgroundColor: 'rgba(239, 68, 68, 0.1)' }}
+            >
+              <span style={{ color: '#EF4444', fontSize: '1.125rem' }}>✗</span>
             </div>
             <div>
-              <h2 className="font-mono text-base md:text-lg font-bold text-[var(--color-error-red)]">
+              <h2 className="font-mono text-base md:text-lg font-bold" style={{ color: '#EF4444' }}>
                 Build Failed
               </h2>
-              <p className="font-mono text-xs text-[var(--color-text-muted)]">
+              <p className="font-mono text-xs" style={{ color: 'var(--text-muted)' }}>
                 ERROR 503
               </p>
             </div>
@@ -173,7 +202,7 @@ function ErrorCard() {
 
         {/* Error body */}
         <div className="p-6">
-          <p className="font-sans text-sm md:text-base text-[var(--color-text-secondary)] leading-relaxed mb-6">
+          <p className="font-sans text-sm md:text-base leading-relaxed mb-6" style={{ color: 'var(--text-secondary)' }}>
             The portfolio website is still under active development. In the meantime, please connect with{' '}
             <span className="kotlin-gradient-text font-semibold">Achmad Alfiansyah</span>{' '}
             via LinkedIn or inspect his source code on GitHub.
@@ -186,7 +215,10 @@ function ErrorCard() {
               href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#0A66C2] hover:bg-[#004182] text-white font-sans font-semibold text-sm transition-all duration-200 hover:scale-[1.02] active:scale-95 no-underline"
+              className="flex-1 flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-sans font-semibold text-sm transition-all duration-200 hover:scale-[1.02] active:scale-95 no-underline"
+              style={{ backgroundColor: '#0A66C2', color: '#fff' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#004182'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0A66C2'}
             >
               <LinkedInIcon className="w-5 h-5" />
               Connect on LinkedIn
@@ -196,7 +228,14 @@ function ErrorCard() {
               href={GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[var(--color-bg-tertiary)] hover:bg-[var(--color-border-subtle)] text-[var(--color-text-primary)] border border-[var(--color-border-subtle)] font-sans font-semibold text-sm transition-all duration-200 hover:scale-[1.02] active:scale-95 no-underline"
+              className="flex-1 flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl font-sans font-semibold text-sm transition-all duration-200 hover:scale-[1.02] active:scale-95 no-underline"
+              style={{
+                backgroundColor: 'var(--bg-tertiary)',
+                color: 'var(--text-primary)',
+                border: '1px solid var(--border-subtle)',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--border-subtle)'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--bg-tertiary)'}
             >
               <GitHubIcon className="w-5 h-5" />
               View Source Code
@@ -211,42 +250,32 @@ function ErrorCard() {
 /* ─── Footer ─── */
 function Footer() {
   return (
-    <footer className="px-6 py-5 md:px-10 md:py-6 border-t border-[var(--color-border-subtle)]">
+    <footer className="px-6 py-5 md:px-10 md:py-6" style={{ borderTop: '1px solid var(--border-subtle)' }}>
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="font-sans text-xs text-[var(--color-text-muted)]">
+        <p className="font-sans text-xs" style={{ color: 'var(--text-muted)' }}>
           © 2026 Achmad Alfiansyah
         </p>
         <div className="flex items-center gap-5">
-          <a
-            id="footer-linkedin"
-            href={LINKEDIN_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors duration-200"
-            aria-label="LinkedIn"
-          >
-            <LinkedInIcon className="w-4 h-4" />
-          </a>
-          <a
-            id="footer-github"
-            href={GITHUB_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors duration-200"
-            aria-label="GitHub"
-          >
-            <GitHubIcon className="w-4 h-4" />
-          </a>
-          <a
-            id="footer-stackoverflow"
-            href={STACKOVERFLOW_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors duration-200"
-            aria-label="Stack Overflow"
-          >
-            <StackOverflowIcon className="w-4 h-4" />
-          </a>
+          {[
+            { id: 'footer-linkedin', href: LINKEDIN_URL, label: 'LinkedIn', Icon: LinkedInIcon },
+            { id: 'footer-github', href: GITHUB_URL, label: 'GitHub', Icon: GitHubIcon },
+            { id: 'footer-instagram', href: INSTAGRAM_URL, label: 'Instagram', Icon: InstagramIcon },
+          ].map(({ id, href, label, Icon }) => (
+            <a
+              key={id}
+              id={id}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors duration-200"
+              style={{ color: 'var(--text-muted)' }}
+              onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'}
+              onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}
+              aria-label={label}
+            >
+              <Icon className="w-4 h-4" />
+            </a>
+          ))}
         </div>
       </div>
     </footer>
@@ -262,21 +291,22 @@ function FloatingParticles() {
     y: 10 + Math.random() * 80,
     delay: Math.random() * 4,
     duration: 3 + Math.random() * 3,
-    color: ['var(--color-kotlin-purple)', 'var(--color-kotlin-magenta)', 'var(--color-kotlin-orange)'][i % 3],
+    color: ['#7F52FF', '#E32F65', '#F88909'][i % 3],
   }))
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
       {particles.map((p) => (
         <div
           key={p.id}
-          className="absolute rounded-full animate-float opacity-20"
+          className="absolute rounded-full animate-float"
           style={{
             width: p.size,
             height: p.size,
             left: `${p.x}%`,
             top: `${p.y}%`,
             backgroundColor: p.color,
+            opacity: 0.2,
             animationDelay: `${p.delay}s`,
             animationDuration: `${p.duration}s`,
             filter: `blur(${p.size / 2}px)`,
@@ -285,17 +315,19 @@ function FloatingParticles() {
       ))}
       {/* Subtle gradient orbs */}
       <div
-        className="absolute w-64 h-64 md:w-96 md:h-96 rounded-full opacity-[0.03]"
+        className="absolute w-64 h-64 md:w-96 md:h-96 rounded-full"
         style={{
           background: 'radial-gradient(circle, #7F52FF, transparent 70%)',
+          opacity: 0.03,
           top: '10%',
           right: '-5%',
         }}
       />
       <div
-        className="absolute w-48 h-48 md:w-72 md:h-72 rounded-full opacity-[0.03]"
+        className="absolute w-48 h-48 md:w-72 md:h-72 rounded-full"
         style={{
           background: 'radial-gradient(circle, #F88909, transparent 70%)',
+          opacity: 0.03,
           bottom: '15%',
           left: '-3%',
         }}
@@ -335,23 +367,23 @@ export default function App() {
     <>
       <FloatingParticles />
 
-      <div className="relative z-10 flex flex-col min-h-dvh">
+      <div className={`relative flex flex-col ${isShaking ? 'animate-shake' : ''}`} style={{ zIndex: 10, minHeight: '100vh' }}>
         <Header />
 
         {/* Main content */}
         <main className="flex-1 flex flex-col items-center justify-center px-6 py-8 md:py-12 gap-8 md:gap-10">
           {/* Title Section */}
-          <div className="text-center space-y-3 md:space-y-4">
+          <div className="text-center" style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-extrabold tracking-tight">
               <span className="kotlin-gradient-text">Coming soon...</span>
             </h1>
-            <p className="font-sans text-sm sm:text-base md:text-lg text-[var(--color-text-secondary)] max-w-xl mx-auto leading-relaxed">
+            <p className="font-sans text-sm sm:text-base md:text-lg max-w-xl mx-auto leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
               Engineering scalable mobile architectures for your most complex challenges.
             </p>
           </div>
 
           {/* Build Simulator */}
-          <div className={`w-full max-w-lg space-y-6 ${isShaking ? 'animate-shake' : ''}`}>
+          <div className="w-full max-w-lg" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
             {/* Button */}
             {!hasError && (
               <div className="flex justify-center">
